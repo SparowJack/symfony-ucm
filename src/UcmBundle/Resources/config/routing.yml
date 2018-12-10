@@ -1,0 +1,380 @@
+ucm_homepage:
+    path:     /
+    defaults: { _controller: UcmBundle:Front:index }
+
+
+ucm_admin:
+  path: /admin/ucm-mg-admin
+  defaults: { _controller: UcmBundle:Configuration:index }
+
+
+ucm_admin_typemenu_list:
+  path: /ucm-mg-admin/typemenu
+  defaults: { _controller: UcmBundle:Admin:index }
+
+ucm_admin_typemenu_create:
+  path: /ucm-mg-admin/typemenu/create
+  defaults: { _controller: UcmBundle:Admin:create }
+
+
+ucm_admin_typemenu_add:
+  path : /ucm-mg-admin/typemenu/add
+  defaults: { _controller: UcmBundle:Admin:addtypemenu }
+
+
+ucm_admin_typemenu_edit:
+  path : /ucm-mg-admin/typemenu/edit/{id}
+  defaults: { _controller: UcmBundle:Admin:edittypemenu }
+
+
+ucm_admin_typemenu_delete:
+  path : /ucm-mg-admin/typemenu/delete/{id}
+  defaults: { _controller: UcmBundle:Admin:deletetypemenu }
+
+
+ucm_admin_categorie_list:
+  path : /ucm-mg-admin/categorie
+  defaults: { _controller: UcmBundle:Categorie:index }
+
+
+ucm_admin_categorie_add:
+  path : /ucm-mg-admin/categorie/add
+  defaults: { _controller: UcmBundle:Categorie:addcategorie }
+
+
+ucm_admin_categorie_edit:
+  path : /ucm-mg-admin/categorie/edit/{id}
+  defaults: { _controller: UcmBundle:Categorie:editcategorie }
+
+
+ucm_admin_categorie_delete:
+  path : /ucm-mg-admin/categorie/delete/{id}
+  defaults: { _controller: UcmBundle:Categorie:deletecategorie }
+
+
+ucm_admin_rubrique_list:
+  path : /ucm-mg-admin/rubrique
+  defaults: { _controller: UcmBundle:Rubrique:index }
+
+ucm_admin_rubrique_add:
+  path : /ucm-mg-admin/rubrique/add
+  defaults: { _controller: UcmBundle:Rubrique:add }
+
+
+ucm_admin_rubrique_edit:
+  path : /ucm-mg-admin/rubrique/edit/{id}
+  defaults: { _controller: UcmBundle:Rubrique:edit }
+
+
+ucm_admin_rubrique_delete:
+  path : /ucm-mg-admin/rubrique/delete/{id}
+  defaults: { _controller: UcmBundle:Rubrique:delete }
+
+
+
+ucm_admin_banniere_list:
+  path : /ucm-mg-admin/banniere
+  defaults: { _controller: UcmBundle:Banniere:index }
+
+
+ucm_admin_banniere_add:
+  path : /ucm-mg-admin/banniere/add
+  defaults: { _controller: UcmBundle:Banniere:add }
+
+
+ucm_admin_banniere_edit:
+  path : /ucm-mg-admin/banniere/edit/{id}
+  defaults: { _controller: UcmBundle:Banniere:edit }
+
+
+ucm_admin_banniere_delete:
+  path : /ucm-mg-admin/banniere/delete/{id}
+  defaults: { _controller: UcmBundle:Banniere:delete }
+
+
+
+ucm_admin_partenaire_list:
+  path : /ucm-mg-admin/partenaire
+  defaults: { _controller: UcmBundle:Partenaire:index }
+
+
+ucm_admin_partenaire_add:
+  path : /ucm-mg-admin/partenaire/add
+  defaults: { _controller: UcmBundle:Partenaire:add }
+
+
+ucm_admin_partenaire_edit:
+  path : /ucm-mg-admin/partenaire/edit/{id}
+  defaults: { _controller: UcmBundle:Partenaire:edit }
+
+
+ucm_admin_partenaire_delete:
+  path : /ucm-mg-admin/partenaire/delete/{id}
+  defaults: { _controller: UcmBundle:Partenaire:delete }
+
+
+
+
+ucm_admin_evenement_list:
+  path : /ucm-mg-admin/evenement
+  defaults: { _controller: UcmBundle:Evenement:index }
+
+
+ucm_admin_evenement_add:
+  path : /ucm-mg-admin/evenement/add
+  defaults: { _controller: UcmBundle:Evenement:add }
+
+
+ucm_admin_evenement_edit:
+  path : /ucm-mg-admin/evenement/edit/{id}
+  defaults: { _controller: UcmBundle:Evenement:edit }
+
+
+ucm_admin_evenement_delete:
+  path : /ucm-mg-admin/evenement/delete/{id}
+  defaults: { _controller: UcmBundle:Evenement:delete }
+
+
+
+
+ucm_admin_formation_departement:
+  path: /ucm-mg-admin/formation/departement
+  defaults: { _controller: UcmBundle:Departement:index }
+
+ucm_admin_formation_departement_add:
+  path: /ucm-mg-admin/formation/departement/add
+  defaults: { _controller: UcmBundle:Departement:add }
+
+ucm_admin_formation_departement_edit:
+  path: /ucm-mg-admin/formation/departement/edit/{id}
+  defaults: { _controller: UcmBundle:Departement:edit }
+
+ucm_admin_formation_departement_delete:
+  path: /ucm-mg-admin/formation/departement/delete/{id}
+  defaults: { _controller: UcmBundle:Departement:delete }
+
+
+
+
+
+ucm_admin_formation_categformation:
+  path: /ucm-mg-admin/formation/categformation
+  defaults: { _controller: UcmBundle:Categformation:index }
+
+ucm_admin_formation_categformation_add:
+  path: /ucm-mg-admin/formation/categformation/add
+  defaults: { _controller: UcmBundle:Categformation:add }
+
+ucm_admin_formation_categformation_edit:
+  path: /ucm-mg-admin/formation/categformation/edit/{id}
+  defaults: { _controller: UcmBundle:Categformation:edit }
+
+ucm_admin_formation_categformation_delete:
+  path: /ucm-mg-admin/formation/categformation/delete/{id}
+  defaults: { _controller: UcmBundle:Categformation:delete }
+
+
+
+
+
+
+ucm_admin_formation_formation:
+  path: /ucm-mg-admin/formation/formation
+  defaults: { _controller: UcmBundle:Formation:index }
+
+ucm_admin_formation_formation_add:
+  path: /ucm-mg-admin/formation/formation/add
+  defaults: { _controller: UcmBundle:Formation:add }
+
+ucm_admin_formation_formation_edit:
+  path: /ucm-mg-admin/formation/formation/edit/{id}
+  defaults: { _controller: UcmBundle:Formation:edit }
+
+ucm_admin_formation_formation_delete:
+  path: /ucm-mg-admin/formation/formation/delete/{id}
+  defaults: { _controller: UcmBundle:Formation:delete }
+
+
+
+
+
+
+ucm_admin_formation_programme:
+  path: /ucm-mg-admin/formation/programme
+  defaults: { _controller: UcmBundle:Programme:index }
+
+ucm_admin_formation_programme_add:
+  path: /ucm-mg-admin/formation/programme/add
+  defaults: { _controller: UcmBundle:Programme:add }
+
+ucm_admin_formation_programme_edit:
+  path: /ucm-mg-admin/formation/programme/edit/{id}
+  defaults: { _controller: UcmBundle:Programme:edit }
+
+ucm_admin_formation_programme_delete:
+  path: /ucm-mg-admin/formation/programme/delete/{id}
+  defaults: { _controller: UcmBundle:Programme:delete }
+
+
+
+
+ucm_front_show_rubrique:
+  path: /universite/{url}/{id}
+  defaults: { _controller: UcmBundle:Front:show }
+
+
+ucm_front_show_formation:
+  path: /universite/formation/{url}/{id}
+  defaults: { _controller: UcmBundle:Front:formation }
+
+
+ucm_front_show_evenement:
+  path: /universite/evenement/{url}/{id}
+  defaults: { _controller: UcmBundle:Front:evenement }
+
+
+
+ucm_admin_config_general_edit:
+  path: /ucm-mg-admin/config/edit/{id}
+  defaults: { _controller: UcmBundle:Configuration:editConfigGenerale }
+
+
+ucm_front_all_event:
+  path: /universite/evenement
+  defaults: { _controller: UcmBundle:Front:tousevenement}
+
+
+
+ucm_front_all_formation:
+  path: /universite/formation
+  defaults: { _controller: UcmBundle:Front:tousformation}
+
+
+
+
+
+    
+ucm_admin_actualite_list:
+  path: /ucm-mg-admin/actualite
+  defaults: { _controller: UcmBundle:Actualite:index }  
+  
+ucm_admin_actualite_show_delete:
+  path: /ucm-mg-admin/actualite/showdelete
+  defaults: { _controller: UcmBundle:Actualite:showDeleteActu } 
+
+ucm_admin_actualite_delete_actu:
+  path: /ucm-mg-admin/actualite/deleteactu
+  defaults: { _controller: UcmBundle:Actualite:deleteActu }   
+  
+ucm_admin_actualite_edit:
+  path : /ucm-mg-admin/actualite/edit/{id}
+  defaults: { _controller: UcmBundle:Actualite:editActu }  
+  
+ucm_admin_actualite_add:
+  path : /ucm-mg-admin/actualite/add
+  defaults: { _controller: UcmBundle:Actualite:addActualite }  
+  
+ucm_admin_directeur_list:
+  path: /ucm-mg-admin/directeur
+  defaults: { _controller: UcmBundle:Directeur:index }   
+  
+ucm_admin_directeur_edit:
+  path : /ucm-mg-admin/directeur/edit/{id}
+  defaults: { _controller: UcmBundle:Directeur:editDirecteur}  
+
+ucm_admin_direceur_show_delete:
+  path: /ucm-mg-admin/directeur/showDeleteDirecteur/id
+  defaults: { _controller: UcmBundle:Directeur:showDeleteDirecteur }   
+  
+ucm_admin_direceur_delete:
+  path: /ucm-mg-admin/directeur/deleteDirecteur/id
+  defaults: { _controller: UcmBundle:Directeur:deleteDirecteur } 
+
+ucm_admin_direceur_search:
+  path: /ucm-mg-admin/directeur/rechercheDirecteur
+  defaults: { _controller: UcmBundle:Directeur:rechercheDirecteur }  
+
+ucm_admin_directeur_execute_search:
+  path: /ucm-mg-admin/directeur/recherche
+  defaults: { _controller: UcmBundle:Directeur:executerRecherche}  
+  
+ucm_admin_direceur_add:
+  path: /ucm-mg-admin/directeur/addDirecteur
+  defaults: { _controller: UcmBundle:Directeur:addDirecteur } 
+
+ucm_admin_motdirecteur_list:
+  path: /ucm-mg-admin/motdirecteur
+  defaults: { _controller: UcmBundle:MotDirecteur:index } 
+
+ucm_admin_motdirecteur_search:
+  path: /ucm-mg-admin/motdirecteur/rechercheMotdirecteur
+  defaults: { _controller: UcmBundle:MotDirecteur:rechercheMotdirecteur }    
+  
+ucm_admin_motdirecteur_execute_search:
+  path: /ucm-mg-admin/motdirecteur/recherche
+  defaults: { _controller: UcmBundle:MotDirecteur:executerRecherche} 
+
+ucm_admin_motdirecteur_add:
+  path: /ucm-mg-admin/motdirecteur/addmotdirecteur
+  defaults: { _controller: UcmBundle:MotDirecteur:addMotdirecteur }  
+
+ucm_admin_motdirecteur_edit:
+  path: /ucm-mg-admin/motdirecteur/editmotdirecteur/{id}
+  defaults: { _controller: UcmBundle:MotDirecteur:editMotdirecteur } 
+
+ucm_admin_motdirecteur_show_delete:
+  path: /ucm-mg-admin/motdirecteur/showDeleteMotDirecteur/id
+  defaults: { _controller: UcmBundle:MotDirecteur:showDeleteMotdirecteur } 
+
+ucm_admin_motdirecteur_delete:
+  path: /ucm-mg-admin/motdirecteur/deleteMotDirecteur/id
+  defaults: { _controller: UcmBundle:MotDirecteur:deleteMotdirecteur }  
+  
+ucm_admin_actualite_search:
+  path: /ucm-mg-admin/actualite/rechercheActualite
+  defaults: { _controller: UcmBundle:Actualite:rechercheActualite}   
+  
+ucm_admin_actualite_execute_search:
+  path: /ucm-mg-admin/actualite/recherche
+  defaults: { _controller: UcmBundle:Actualite:executerRecherche}   
+
+
+
+ucm_admin_contact_list:
+  path: /ucm-mg-admin/contact
+  defaults: { _controller: UcmBundle:Contact:index }
+
+
+ucm_admin_contact_edit:
+  path : /ucm-mg-admin/contact/edit/{id}
+  defaults: { _controller: UcmBundle:Contact:edit }  
+
+ucm_admin_contact_add:
+  path: /ucm-mg-admin/contact/add
+  defaults: { _controller: UcmBundle:Contact:add }
+
+
+ucm_admin_contact_delete:
+  path: /ucm-mg-admin/contact/delete/{id}
+  defaults: { _controller: UcmBundle:Contact:delete }
+
+
+
+ucm_front_contact:
+  path: /universite/contact
+  defaults: { _controller: UcmBundle:Front:contact}
+
+  
+
+ucm_front_add_contact:
+  path: /universite/addcontact
+  defaults: { _controller: UcmBundle:Front:addcontactfront}
+
+
+
+ucm_front_galerie:
+  path: /universite/galerie
+  defaults: { _controller: UcmBundle:Front:galerie}
+  
+
+

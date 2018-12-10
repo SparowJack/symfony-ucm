@@ -1,0 +1,180 @@
+{% extends 'layout_admin.html.twig' %}
+{# Type menu #}
+
+{% block sidebar %}
+        <ul class="list-unstyled components">
+                        <li class="{{ isConfiguration }}">
+                            <a href="{{ path('ucm_admin')}}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Configuration génerale du site 
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_typemenu_list') }}">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Type menu
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_categorie_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Catégorie
+                            </a>                            
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_rubrique_list') }}">
+                                <i class="glyphicon glyphicon-link"></i>
+                                Rubriques
+                            </a>
+						</li>
+						<li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                                <i class="glyphicon glyphicon-duplicate"></i>                                
+                                Formations
+                            </a>
+                            <ul class="list-unstyled" id="pageSubmenu" style="">
+                                <li><a href="{{ path('ucm_admin_formation_departement') }}">Departement</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_categformation') }}">Catégories formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_formation') }}">Formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_programme') }}">Programmes</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_banniere_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Bannière accueil
+                            </a>                            
+                        </li>
+						<li class="" >
+							<a href="{{ path('ucm_admin_actualite_list') }}">
+							<i class="glyphicon glyphicon-send"></i>
+							Actualités
+							</a>
+							</li>
+                        
+                        <li>
+                            <a href="{{ path('ucm_admin_evenement_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Evenements
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_partenaire_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Partenaires
+                            </a>
+                        </li>
+						<li>
+							<a href="{{ path('ucm_admin_directeur_list') }}">
+								<i class="glyphicon glyphicon-user"></i>
+								Directeur
+							</a>
+						</li>
+						 <li>
+							<a href="{{ path('ucm_admin_motdirecteur_list') }}">
+								<i class="glyphicon glyphicon-user"></i>
+								Mot du directeur
+							</a>
+						</li>
+                        <li>
+                            <a href="{{ path('user_list') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_contact_list') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Contacts
+                            </a>
+                        </li>
+                        
+                    </ul>
+{% endblock %}
+
+{% block recherche %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="row">
+	<div class="col-md-6">
+		<h2><span style="color:#062F4F;font-weight:bold">{{ titre }}</span></h2>
+	</div>
+	<div class="col-md-6" style="top:10px">
+		
+	</div>
+</div>    
+</div>
+{% endblock recherche %}
+
+{% block body %}
+	{% for flash_message in app.session.flashBag.get('notice') %}
+	<div class="p-3 mb-2 bg-success text-white">
+	    {{ flash_message }}
+	</div>
+	{% endfor %}	 
+	 
+        <h3 style="color:#062F4F;font-weight:bold"> Nom du site et logo</h3>
+        <hr />
+        <div class="row">        
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Nom du site</span></div>
+            <div class="col-md-5">{{ configs.nomSite }}</div>
+            <div class="col-md-4"></div>
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Logo</span></div>
+            <div class="col-md-5"><img src="{{ asset('img/logo-ucm.jpg') }}" width="200px" height="190px"/></div>
+            <div class="col-md-4"></div>
+        </div>
+        <hr />
+        <br />
+
+        <h3 style="color:#062F4F;font-weight:bold">Administrateur</h3>
+        <hr />
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Administrateur</span></div>
+            <div class="col-md-5">{{ configs.administrateur }}</div>
+            <div class="col-md-4"></div>
+        </div>
+        <br />
+
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Adresse email</span></div>
+            <div class="col-md-5">{{ configs.email}}</div>
+            <div class="col-md-4"></div>
+        </div>
+        <hr />
+        <br />*
+        <h3 style="color:#062F4F;font-weight:bold">Description et adresse</h3>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Description</span></div>
+            <div class="col-md-5">{{configs.description }}</div>
+            <div class="col-md-4"></div>
+        </div>
+        <br />
+
+        
+
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Adresse</span></div>
+            <div class="col-md-5">{{ configs.adresse }}</div>
+            <div class="col-md-4"></div>        
+        </div>
+        <br />
+        <div class="row">
+            <div class="col-md-3"><span style="color:#062F4F;font-weight:bold">Charte</span></div>
+            <div class="col-md-5">{{ configs.charte }}</div>
+            <div class="col-md-4"></div>        
+        </div>
+
+<hr />
+        <div class="row">
+            <div class="col-md-9">
+            </div>
+            <div class="col-md-3">
+                <a  href="{{ path('ucm_admin_config_general_edit',{'id':1}) }}" class="btn btn-primary">Modifier les informations</a>
+            </div>
+        </div>
+     
+{% endblock %}

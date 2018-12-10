@@ -1,0 +1,206 @@
+{% extends 'layout_admin.html.twig' %}
+{# Type menu #}
+
+{% block sidebar %}
+        <ul class="list-unstyled components">
+            <li class="{{ isConfiguration }}">
+                <a href="{{ path('ucm_admin')}}">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Configuration génerale du site 
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ path('ucm_admin_typemenu_list') }}">
+                    <i class="glyphicon glyphicon-home"></i>
+                    Type menu
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ path('ucm_admin_categorie_list') }}">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                    Catégorie
+                </a>                            
+            </li>
+            <li>
+                <a href="{{ path('ucm_admin_rubrique_list') }}">
+                    <i class="glyphicon glyphicon-link"></i>
+                    Rubriques
+                </a>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="glyphicon glyphicon-duplicate"></i>                                
+                    Formations
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                    <li><a href="#">Recherche</a></li>
+                    <li><a href="#">Master 2</a></li>
+                    <li><a href="#">Master 1</a></li>
+                    <li><a href="#">License Professionnel</a></li>
+                </ul>
+            </li>
+            <li class="">
+                <a href="{{ path('ucm_admin_banniere_list') }}">
+                    <i class="glyphicon glyphicon-briefcase"></i>
+                    Bannière accueil
+                </a>                            
+            </li>
+			<li class="" >
+							<a href="{{ path('ucm_admin_actualite_list') }}">
+							<i class="glyphicon glyphicon-send"></i>
+							Actualités
+							</a>
+							</li>
+                        
+            <li>
+                <a href="{{ path('ucm_admin_evenement_list') }}">
+                    <i class="glyphicon glyphicon-send"></i>
+                    Evenements
+                </a>
+            </li>
+            <li class="">
+                <a href="{{ path('ucm_admin_partenaire_list') }}">
+                    <i class="glyphicon glyphicon-send"></i>
+                    Partenaires
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Utilisateurs
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('ucm_admin_contact_list') }}">
+                    <i class="glyphicon glyphicon-user"></i>
+                    Contacts
+                </a>
+            </li>
+            
+        </ul>
+{% endblock %}
+
+{% block recherche %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="row">
+    <div class="col-md-6">
+        <h2><span style="color:#062F4F;font-weight:bold">{{ titre }}</span></h2>
+    </div>
+    <div class="col-md-6" style="top:10px">
+        
+    </div>
+</div>    
+</div>
+{% endblock recherche %}
+
+{% block body %}
+    {{ form_start(form, {'attr': {'class': 'form-horizontal'}}) }}
+		<div class="row">
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.email, "Email", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.email) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>
+		</div>	
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.logo, "Logo", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.logo) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.logo, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>	
+		</div>	
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.description, "Description", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.description) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.description, {'attr': {'class': 'form-control'}}, {'attr': {'rows': '5'}}) }}
+				</div>
+			</div>	
+		</div>
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.administrateur, "Administrateur", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.administrateur) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.administrateur, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>	
+		</div>
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.charte, "Charte", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.charte) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.charte, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>	
+		</div>
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.adresse, "Adresse", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.adresse) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.adresse, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>	
+		</div>
+		
+		
+		<div class="row">	
+			<div class="form-group">
+				{# Génération du label. #}
+				{{ form_label(form.nom_site, "Nom site", {'label_attr': {'class': 'col-sm-3 control-label'}}) }}
+
+				{# Affichage des erreurs pour ce champ précis. #}
+				{{ form_errors(form.nom_site) }}
+				<div class="col-sm-4">
+				{# Génération de l'input. #}
+				{{ form_widget(form.nom_site, {'attr': {'class': 'form-control'}}) }}
+				</div>
+			</div>	
+		</div>
+		
+		{# Affichage des erreurs pour ce champ précis. #}	     
+	      <label class="col-sm-3"></label>   
+	      <div class="col-sm-4">
+	        {# Génération de l'input. #}
+	        {{ form_widget(form.save, {'attr': {'class': 'btn btn-primary'}}) }}
+	      </div>
+		
+    {{ form_end(form) }}
+	
+
+     
+{% endblock %}

@@ -1,0 +1,176 @@
+{% extends 'layout_admin.html.twig' %}
+{# Type menu #}
+
+{% block sidebar %}
+        <ul class="list-unstyled components">
+                        <li>
+                            <a href="{{ path('ucm_admin')}}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Configuration génerale du site 
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_typemenu_list') }}">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Type menu
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_categorie_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Catégorie
+                            </a>                            
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_rubrique_list') }}">
+                                <i class="glyphicon glyphicon-link"></i>
+                                Rubriques
+                            </a>
+						</li>
+                        <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                                <i class="glyphicon glyphicon-duplicate"></i>                                
+                                Formations
+                            </a>
+                            <ul class="list-unstyled" id="pageSubmenu" style="">
+                                <li><a href="{{ path('ucm_admin_formation_departement') }}">Departement</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_categformation') }}">Catégories formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_formation') }}">Formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_programme') }}">Programmes</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_banniere_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Bannière accueil
+                            </a>                            
+                        </li>
+						<li class="" >
+							<a href="{{ path('ucm_admin_actualite_list') }}">
+							<i class="glyphicon glyphicon-send"></i>
+							Actualités
+							</a>
+						</li>
+                        <li class="{{ isEvenement }}">
+                            <a href="{{ path('ucm_admin_evenement_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Evenements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_partenaire_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Partenaires
+                            </a>
+                        </li>
+						<li>
+			<a href="{{ path('ucm_admin_directeur_list') }}">
+				<i class="glyphicon glyphicon-user"></i>
+				Directeur
+			</a>
+		</li>
+		 <li>
+			<a href="{{ path('ucm_admin_motdirecteur_list') }}">
+				<i class="glyphicon glyphicon-user"></i>
+				Mot du directeur
+			</a>
+		</li>
+                        <li>
+                            <a href="{{ path('user_list') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_contact_list') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Contacts
+                            </a>
+                        </li>
+                        
+                    </ul>
+{% endblock %}
+
+{% block recherche %}
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+<div class="row">
+	<div class="col-md-6">
+		<h2><span style="color:#062F4F;font-weight:bold">{{ titre }}</span></h2>
+	</div>
+	<div class="col-md-6" style="top:10px">
+		<form class="navbar-form navbar-right inline-form" >
+	      <div class="form-group">
+	        <input type="search" class="input-sm form-control" placeholder="Recherche">
+	        <button type="submit" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Chercher</button>
+	        <a href="{{ path('ucm_admin_evenement_add') }}"  class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-add"></span> Ajouter</a>
+	      </div>
+	    </form>
+	</div>
+</div>    
+</div>
+{% endblock recherche %}
+{% block body %}
+    {% for flash_message in app.session.flashBag.get('notice') %}
+    <div class="p-3 mb-2 bg-success text-white">
+        {{ flash_message }}
+    </div>
+    {% endfor %}     
+     <table class="table table-striped table-dark">
+        <tr style="background-color:#3e4444; color:#fff">
+            <td>
+                Identifiant
+            </td>
+            <td>
+                Libelle
+            </td>
+            <td>
+                Date de l'evenement
+            </td>
+            <td>
+                Description
+            </td>
+            
+            <td>
+                Action
+            </td>
+        </tr>
+     
+        {% for evenement in evenements %}
+        <tr>
+            <td>
+                {{ evenement.id }}
+            </td>
+            <td>
+                {{ evenement.libelle }}
+            </td>
+            <td>
+                
+                {{ evenement.date|date("m/d/Y H:i") }}
+            </td>                     
+            <td>
+                {{ evenement.description }}
+            </td>           
+            <td>
+                <div class="row">
+                    <div class="col-md-2">
+                            <a class="btn btn-warning" href="#"><span class="glyphicon glyphicon-calendar"></span></a>
+                    </div>
+                    <div class="col-md-2">
+                        <a class="btn btn-warning" title="Modifier" href="{{ path('ucm_admin_evenement_edit',{'id':evenement.id}) }}"><span class="glyphicon glyphicon-edit"></span></a>
+                    </div>
+                    <div class="col-md-2">
+                    <form  action="{{ path('ucm_admin_evenement_delete',{'id':  evenement.Id  }) }}" method="post">
+                        <input type="hidden" name="_method" value="DELETE" />
+                        {{ form_widget(deleteForms[evenement.id]) }}                        
+                        <button type="submit" class="confirmDeletion btn btn-danger">
+                            <span class="glyphicon glyphicon-remove"></span>        
+                        </button>
+                    </form>
+                    </div>
+                </div>
+            </td>
+        </tr>                 
+        {% endfor %}
+    </table>
+    
+{% endblock %}

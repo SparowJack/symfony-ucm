@@ -1,0 +1,132 @@
+{% extends 'layout_formation.html.twig' %}
+
+{% block body %}
+			{% for formation in formations %}
+					<div class="event">
+							  <div class="container">            
+								<div class="fiche">
+									  <!-- debut col - 4 -->
+									  <div class="col-md-4 col-sm-12 col-xs-12 ">
+										<div class="panel">
+											<div class="panel-heading">
+												<h2>{{ formation.titre }}
+												</h2>						
+											</div>
+											
+											<div class="panel-body ">
+
+											   <div class="media">
+												<div class="">
+												 <h3 style="color:#bd2127;"> Metiers et secteurs </h3>
+												</div>
+												 <div class="media-body">
+													{{ formation.metier | raw }}												
+												  
+												 </div>
+											   </div>
+
+											   <div class="media">
+												<div class="">
+												 <h3 style="color:#bd2127;"> Porsuite d'etudes </h3>
+												</div>
+												 <div class="media-body">
+													{{ formation.poursuite | raw }}
+												 </div>
+											   </div>   
+
+												<div class="media">
+												<div class="">
+												 <h3 style="color:#bd2127;"> Contact </h3>
+												</div>
+												 <div class="media-body">												 
+													{{ formation.contact | raw }}
+												 </div>
+											   </div>   
+
+											</div>
+											<div class="panel-footer">
+												<p><strong><a href="{{ path('ucm_front_all_event') }}">Tous les événements</strong></p>
+											</div>
+										</div>
+									   
+									   <!-- Recherche formation -->
+									<!-- NEWSLETTER -->
+									</div>
+									  <!-- fin col - 4 -->
+									  <!--  col 8 -->
+
+									  <div class="col-md-8 col-sm-12 col-xs-12">
+										<div class="panel ">
+											<div class="panel-heading">
+												<h2>Departement  {{ formation.departement }}</h2>
+											</div>
+											<div class="panel-body directeur">
+											   <div class="media">
+												  <h3 style="color:#bd2127;"> Objectifs de la formation </h3>
+												  <br />
+												 <div class="media-body">
+												   <article>													 
+													 {{ formation.objectif | raw }}
+												   </article>
+												 </div>
+											   </div>
+											</div>
+											<div class="panel-footer">
+												<p><strong><a href="{{ path('ucm_front_contact') }}">Nous contacter</a></strong></p>
+											</div>
+									  </div>
+
+										<div class="panel pad-30">
+										  <div class="panel-heading">
+											<h2>UNITE D'ENSEIGNEMENT</h2>
+										  </div>
+										  
+										  <div class="panel-body">
+												<table class="table">
+													{% for programme in programmes %}
+														{% if programme.class == 'grand_titre' %}
+															<tr style="text-transform:Uppercase;font-weight:bold;background-color:#bd2127">
+																<td style="color:#fff">{{ programme.libelle }}</td>
+																<td></td>
+																<td></td>
+															</tr>
+														{% elseif programme.class == 'semestre' %}
+															<tr style="text-transform:Uppercase;font-weight:bold;background-color:#000">
+																<td style="color:#fff">{{ programme.libelle }}</td>
+																<td></td>
+																<td></td>
+															</tr>
+														{% elseif programme.class == 'titre_volume' %}
+															<tr style="text-transform:Uppercase;font-weight:bold">
+																<td>{{ programme.libelle }}</td>
+																<td>{{ programme.volume }}</td>
+																<td>{{ programme.credit }}</td>
+															</tr>
+														{% elseif programme.class == 'interne_titre_parent' %}
+															<tr style="text-transform:Uppercase;font-weight:bold">
+																<td>{{ programme.libelle }}</td>
+																<td>{{ programme.volume }}</td>
+																<td>{{ programme.credit }}</td>
+															</tr>
+														{% else %}
+															<tr style="font-style:italic">
+																<td>{{ programme.libelle }}</td>
+																<td>{{ programme.volume }}</td>
+																<td>{{ programme.credit }}</td>
+															</tr>
+														{% endif %}
+													{% endfor %}
+												</table>
+										  </div>
+										  
+											
+										</div> 
+													 
+									  </div>
+									  <!--  fin col 8 -->
+								  <!-- FORMATION -->                
+								</div>
+							  </div>
+					</div>
+			{% endfor %}
+{% endblock %}

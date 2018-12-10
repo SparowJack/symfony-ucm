@@ -1,0 +1,350 @@
+
+{% set layout = '' %}
+{% for rubrique in rubriques %}
+	{% set layout = rubrique.layout %}	
+{% endfor %}
+
+
+{% extends layout %}
+{% block body %}
+
+	{% for rubrique in rubriques %}	
+		{% if rubrique.layout == 'layout_fiche.html.twig' %}
+		<div class="panel ">
+		                <div class="panel-heading">
+		                    <h2>{{ rubrique.libelle}} : </h2>
+		                </div>
+		                <div class="panel-body directeur">
+		                   <div class="media">
+		                    <div class="media-left">	                      
+		                      <img src="{{ asset('uploads/rubrique/' ~ rubrique.image1) }}"  style="height:120px">
+		                    </div>
+		                     <div class="media-body">
+		                       <article>
+		                        	{{ rubrique.description1 | raw  }}  
+		                       </article>
+		                     </div>
+		                   </div>
+
+		                </div>
+		                <div class="panel-footer">
+		                    <p><strong><a href="">Nous contacter</a></strong></p>
+		                </div>
+		</div>
+		<div class="panel pad-30">      
+		  
+			  <div class="panel-body">
+			      {{ rubrique.description2 | raw  }}                  
+			  </div>
+		    
+		</div>
+		<div class="panel pad-30">      
+		  
+			  <div class="panel-body">
+			      {{ rubrique.description3 | raw  }}                  
+			  </div>
+		    
+		</div> 
+		
+		
+		
+		{% elseif rubrique.layout == 'layout_etudiant.html.twig'%}
+				
+		<div class="event">
+          <div class="container">
+            <div class="row">
+                  <div class="col-md-8 col-sm-12 col-xs-12">
+                     <!-- DEBUT FORMATION -->
+                          <div class="row formation-ucm">
+                              <div class="col-md-12 ">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <img src="{{ asset('uploads/rubrique/' ~ rubrique.image1) }}"  style="height:120px">
+                                          <!-- <i class="fa fas fa-font"></i> -->
+                                      </div>
+                                      <div class="panel-body">
+												<h4 class="nopc">{{ rubrique.libelle}}</h4>                                              
+                                              <div class="clear"></div>
+                                              <div id="demo">
+                                                <div class="panel panel-default">
+                                                  <div class="panel-body">
+                                                     {{ rubrique.description1 | raw  }}  
+                                                  </div>
+                                                  </div>                                                
+                                                <div style="clear:both; float: none"></div>
+                                                  <div class="reseau wow bounceInRight ">
+                                                    <div class="container">
+                                                      <div style="clear:both; float: none"></div>
+                                                      <a class="btn btn-block btn-social btn-twitte ">
+                                                        <span class="fa fa-twitter"></span>Twitter
+                                                      </a>
+                                                      <a class="btn btn-block btn-social btn-facebook ">
+                                                        <span class="fa fa-facebook"></span> facebook
+                                                      </a>
+                                                    </div>
+                                                  </div>
+                                              </div>
+                                      </div>
+
+                                  </div>
+                              </div>                          
+                              <div class="col-md-12 ">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-globe"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">{{ rubrique.libelle}}</h4>
+												{{ rubrique.description2 | raw  }}                                              
+                                              <div class="clear"></div>
+                                             
+                                      </div>
+
+                                  </div>
+                              </div>                          
+                              <div class="col-md-12 ">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa far fa-paperclip"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">{{ rubrique.libelle}}</h4>
+                                          
+                                              <div class="clear"></div>
+                                              <div id="demo3">
+                                                <div class="panel panel-default">
+                                                  
+                                                  <div class="panel-body">
+                                                    {{ rubrique.description3 | raw }}
+                                                  </div>
+                                                  </div>
+                                                
+                                              </div>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+
+                          <!-- DEBUT FORMATION 2 -->
+                          <div class="row">
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-bar-chart"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">service A</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-a/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-bank"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">Service B</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-b/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-paper-plane"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">Service C</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-c/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-gears"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">Service D</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-d/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-adjust"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">Service E</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-e/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+
+                          
+                              <div class="col-md-4 col-sm-6">
+                                  <div class="panel panel-default">
+                                      <div class="panel-heading">
+                                          <!-- <img src="/icone/illustration-24.png"> -->
+                                          <i class="fa fa-flag-checkered"></i>
+                                      </div>
+                                      <div class="panel-body">
+                                          <h4 class="nopc">Service F</h4>
+                                          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Expedita, suscipit, repellendus velit rem </p>
+                                              <a href="http://localhost/mon-site/coupon-promo/service-f/" class="hvr-icon-float-away nomob">Learn More</a>
+                                      </div>
+
+                                  </div>
+                              </div>
+                          </div>
+
+
+
+
+                          
+                      </div>
+
+
+              <!-- FORMATION -->
+                <div class="col-md-4 col-sm-12 col-xs-12 ">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h2>Les événements à venir</h2>
+                        </div>
+                        <div class="panel-body ">
+                           {% if evenements|length > 0 %}
+								{% for evenement in evenements %}
+									{% set dateEvent = evenement.date|date('Y-m-d') %}
+									{% set arrDateEvent = dateEvent|split('-')%}
+									    <div class="media">
+											<div class="media-left">
+											    <p class="day">{{ arrDateEvent[2] }}</p>
+											    <p class="month">
+													{% for j in range(1, 12) %}
+														{% if j == arrDateEvent[1] %}
+															{{ evenement.date |date('M') }}
+														{% endif %}
+													{% endfor %}	
+											    </p>
+											</div>
+											 <div class="media-body">
+											  <div class="tiret-droit">
+													[{{ evenement.libelle }}] {{ evenement.description|couperPhrase(141) }}
+											  </div>
+											 </div>
+										</div>
+								{% endfor %}
+							{% endif %}
+                        </div>
+                        <div class="panel-footer">
+                            <p><strong><a href="{{ path('ucm_front_all_event') }}" style="color:#000"> Tous les evenements</a></strong></p>
+							
+                        </div>
+                    </div>
+                   
+                   <!-- Recherche formation -->
+
+                    <div class="panel panel-default panel_form ">
+                        <div class="panel-heading">
+                            <h2>recherche une formation</h2>
+                        </div>
+            
+                        <div class="panel-body">
+                          <p class="" style="margin:0 0 15px;">En alternance ou continue</p>
+                           <form class="form-horizontal" role="form" action="{{ path('ucm_front_all_formation') }}" type="GET">                              
+                              <div class="form-group">
+                                <div class="col-sm-12 relative">
+                                  <select name="accessible_en" class="form-control" id="">
+                                    <option value="">Accessible en</option>
+									{% for categformation in categformations %}
+										<option value="{{ categformation.libelle}}">{{ categformation.libelle}}</option>
+									{% endfor %}
+                                </select>                                   
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-sm-12 relative">
+                                  <select name="discipline" class="form-control" id="">
+                                   <!--<option value=""></option>-->
+                                    {% for formation in formations %}
+										<option value="{{ formation.titre}}">{{ formation.titre}}</option>
+									{% endfor %}                                   
+                                </select>                                   
+                                </div>
+                              </div>                             
+
+                              <div class="form-group"> 
+                                <div class=" col-sm-12">
+                                  <button type="submit" class="btn btn-generale hvr-push">Envoyer</button>
+                                </div>
+                              </div>
+
+                            </form>
+                          </div>
+                        <div class="panel-footer">
+                            <p><strong><a href="{{ path('ucm_front_all_formation') }}" style="color:#000">Toutes nos formations</a></strong></p>
+                        </div>
+                    </div>
+
+                    <!-- NEWSLETTER -->
+                     <div class="tab-content custom-tab-content wow bounceInDown" align="center">
+                        <div class="subscribe-panel">
+                        <h2>Newsletter</h2>
+                        <p>Abonnez-vous à notre Newsletter</p>
+                            <form action="" method="post">
+                              <div class="col-md-12">
+                                <div class="input-group">
+                                  <span class="input-group-addon"><i class="glyphicon glyphicon-envelope" aria-hidden="true"></i></span>
+                                  <input type="text" class="form-control input-lg" name="email" id="email"  placeholder="Enter your Email"/>
+                                </div>
+                              </div>
+                              <div class="col-md-4"></div>
+                              <br/><br/><br/>
+                              <button class="btn btn-generale hvr-push btn-lg">Souscrire Maintenant</button>
+                          </form>
+                        </div>
+                      </div>
+                        <p><a class="btn icon-btn btn-default download hvr-bob wow bounceInDown" href="#"><span class="fa fa-file-pdf-o"></span>Télécharger</a></p>
+                </div>
+
+
+                
+            </div>
+          </div>
+        </div>
+		{% else %}
+			<p>test </p>
+		{% endif %}
+		
+		
+	{% endfor %}	
+{% endblock %}	
+

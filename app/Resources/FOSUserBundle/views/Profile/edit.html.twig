@@ -1,0 +1,76 @@
+{% extends "layout_admin.html.twig" %}
+
+{% block sidebar %}
+        <ul class="list-unstyled components">
+                        <li>
+                            <a href="{{ path('ucm_admin')}}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Configuration génerale du site 
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_typemenu_list') }}">
+                                <i class="glyphicon glyphicon-home"></i>
+                                Type menu
+                            </a>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_categorie_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Catégorie
+                            </a>                            
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_rubrique_list') }}">
+                                <i class="glyphicon glyphicon-link"></i>
+                                Rubriques
+                            </a>
+						</li>
+                         <li>
+                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                                <i class="glyphicon glyphicon-duplicate"></i>                                
+                                Formations
+                            </a>
+                            <ul class="list-unstyled" id="pageSubmenu" style="">
+                                <li><a href="{{ path('ucm_admin_formation_departement') }}">Departement</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_categformation') }}">Catégories formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_formation') }}">Formations</a></li>
+                                <li><a href="{{ path('ucm_admin_formation_programme') }}">Programmes</a></li>
+                            </ul>
+                        </li>
+                        <li class="">
+                            <a href="{{ path('ucm_admin_banniere_list') }}">
+                                <i class="glyphicon glyphicon-briefcase"></i>
+                                Bannière accueil
+                            </a>                            
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_evenement_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Evenements
+                            </a>
+                        </li>
+                        <li>
+                            <a href="{{ path('ucm_admin_partenaire_list') }}">
+                                <i class="glyphicon glyphicon-send"></i>
+                                Partenaires
+                            </a>
+                        </li>
+                        <li class="active">
+                            <a href="{{ path('user_list') }}">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Utilisateurs
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="glyphicon glyphicon-user"></i>
+                                Contacts
+                            </a>
+                        </li>                        
+                    </ul>
+{% endblock %}
+
+{% block body %}
+{% include "@FOSUser/Profile/edit_content.html.twig" %}
+{% endblock %}

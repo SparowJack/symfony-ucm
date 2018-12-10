@@ -1,0 +1,11 @@
+services:
+  ucm_bundle.menu_service:
+      class: UcmBundle\Services\MenuService
+      arguments: [ @doctrine.orm.entity_manager]
+      tags:
+        - { name: twig.extension }
+      
+
+   # ucm.example:
+   #     class: UcmBundle\Example
+   #     arguments: ["@service_id", "plain_value", "%parameter%"]

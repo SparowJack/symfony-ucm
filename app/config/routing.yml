@@ -1,0 +1,42 @@
+
+
+#fos_user:
+#   resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+
+fos_user_security:
+    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+
+fos_user_profile:
+    resource: "@FOSUserBundle/Resources/config/routing/profile.xml"
+    prefix: /ucm-mg-admin/profile
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
+    prefix: /ucm-mg-admin/register
+
+fos_user_resetting:
+    resource: "@FOSUserBundle/Resources/config/routing/resetting.xml"
+    prefix: /resetting
+
+fos_user_change_password:
+    resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
+    prefix: /ucm-mg-admin/profile
+
+
+ucm:
+    resource: "@UcmBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user:
+    resource: "@UserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+user_list:
+    path:     /ucm-mg-admin/list-user
+    defaults: { _controller: UserBundle:Default:list }
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation
+
+

@@ -1,0 +1,21 @@
+{{
+	form_start(form, {
+		'attr' : {'class': 'navbar-form navbar-right inline-form', 'action': path(route_recherche) }
+		})
+}}
+
+	
+	{{
+		form_widget(form.recherche, {
+			'attr' : {'class': 'input-sm form-control ', 'name': 'recherche' }
+		})
+	}}
+	
+	{{
+		form_widget(form.save, {
+			'attr' : {'class': 'btn btn-primary ' }
+		})
+	}}
+	
+
+{{ form_end(form) }}

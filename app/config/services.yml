@@ -1,0 +1,18 @@
+# Learn more about services, parameters and containers at
+# https://symfony.com/doc/current/service_container.html
+parameters:
+    #parameter_name: value
+
+services:
+    #service_name:
+    #    class: AppBundle\Directory\ClassName
+    #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
+    ucm.image_uploader:
+        class: UcmBundle\ImageUpload
+        arguments: ['%images_directory%']
+    ucm.doctrine_image_listener:
+        class: UcmBundle\EventListener\ImageUploadListener
+        arguments: ['@ucm.image_uploader']
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

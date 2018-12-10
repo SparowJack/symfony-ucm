@@ -1,0 +1,56 @@
+{% extends 'layout_evenement.html.twig' %}
+{% block body %}
+
+<div class="event">
+          <div class="container">
+            <div class="row">
+                  <div class="panel col-md-12 col-sm-12 col-xs-12">
+                      <h1>Evenement à venir</h1>
+                        <div class="col-md-12">
+                              <div class="row">
+                              <hr>                                
+                       <div class="panel">
+                        
+                        <div class="panel-body ">
+						
+							{% if evenements|length > 0 %}
+								{% for evenement in evenements %}
+									{% set dateEvent = evenement.date|date('Y-m-d') %}
+									{% set arrDateEvent = dateEvent|split('-')%}
+									    <div class="media">
+											<div class="media-left">
+											    <p class="day">{{ arrDateEvent[2] }}</p>
+											    <p class="month">
+													{% for j in range(1, 12) %}
+														{% if j == arrDateEvent[1] %}
+															{{ evenement.date |date('M') }}
+														{% endif %}
+													{% endfor %}	
+											    </p>
+											</div>
+											 <div class="media-body">
+											  <div class="tiret-droit">
+													[{{ evenement.libelle }}] {{ evenement.description|couperPhrase(141) }}
+											  </div>
+											 </div>
+										</div>
+										<br />
+								{% endfor %}
+							{% endif %}
+
+                           
+
+                        </div>
+                        <div class="panel-footer">
+                            <p><strong></strong></p>
+                        </div>
+                    </div>
+                              </div>
+                      </div>
+                  </div>
+                
+            </div>
+          </div>
+        </div>
+
+{% endblock %}

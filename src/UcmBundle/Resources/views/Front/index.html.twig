@@ -1,0 +1,270 @@
+{% extends 'layout_front.html.twig' %}
+
+
+{% block banniere %}						
+				<div class="full-page ucm-video">				
+						<div class="embed-responsive embed-responsive-16by9">								
+							<div id="myCarousel" class="" data-ride="carousel">								
+								<!-- Indicators -->
+								<ol class="carousel-indicators">
+									  {% for i in range(1, bannieres|length) %}
+										  <li data-target="#myCarousel" data-slide-to="{{ i }}" class="active"></li>
+									  {% endfor %}						 							 
+								</ol>
+								<!-- Wrapper for slides -->
+								<div class="carousel-inner" role="listbox">								  
+								  {% for banniere in bannieres %}
+									<div class="item">
+										<img src="{{ asset('uploads/images/' ~ banniere.banniere) }}">
+										<div class="contenu-video">
+											<h2>{{ banniere.libelle }}</h2>
+											<p>{{ banniere.description }}</p>		
+											<a href="{{ path('ucm_front_show_rubrique',{'url':banniere.rubrique.categorie.url,'id':banniere.rubrique.categorie.id}) }}" class="btn btn-generale hvr-push">Lire la suite</a>											
+										</div>	
+										
+									</div>
+								  {% endfor %}
+								</div>
+								<!-- Left and right controls -->
+								<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+								  <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+								  <span class="sr-only">Previous</span>
+								</a>
+								<a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+								  <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+								  <span class="sr-only">Next</span>
+								</a>							
+							</div>
+						</div>					
+				</div>
+{% endblock %}
+
+
+{% block body %}      
+        <div class="event">
+          <div class="container">
+            <div class="row">
+              <!-- EVENNEMENT -->
+                <div class="col-md-8 col-sm-12 col-xs-12">
+                  <!-- actu -->
+                    <div class="panel actualite">
+                        <div class="panel-heading">
+                            <h2>actualité </h2>
+                        </div>
+                        <div class="panel-body">
+                          <div class="col-md-12 row">
+                            <div class="row">
+							{% for actualite in actualites %}
+                              <div class="col-sm-6 col-xs-12">
+                                <div class="actu hvr-float-shadow">
+                                   <div class="thumnail">
+                                      <a href="#">
+                                        {% if actualite.url != "" %}
+											<img src="{{ asset('img/actualite/'~ actualite.url) }}" alt="">
+										{% else %}	
+											<img src="img/logo-ucm.jpg" alt="">
+										{% endif %}
+                                      </a>
+                                    </div>
+                                    <div class="caption">
+                                      <p class="title">{{ actualite.titre }}</p>
+                                    <p>{{ actualite.contenu|couperPhrase(100) }}</p>
+                                    <p><a data-toggle="modal" style="cursor:pointer" data-target="#link_desc_{{ actualite.id }}">lire la suite</a></p>
+                                    </div>
+                                </div>						
+
+									<!-- Modal -->
+									<div class="modal fade" id="link_desc_{{ actualite.id }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									  <div class="modal-dialog" role="document">
+										<div class="modal-content">
+										  <div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel">{{ actualite.titre }}</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+											  <span aria-hidden="true">&times;</span>
+											</button>
+										  </div>
+										  <div class="modal-body">
+											{{ actualite.contenu }}
+										  </div>
+										  <div class="modal-footer">
+											<button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+											
+										  </div>
+										</div>
+									  </div>
+									</div>
+									<!-- modal -->
+                            </div>		
+
+                            {% endfor %}
+
+
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="panel-footer">
+                            <p><strong><a href="{{ path('ucm_front_contact') }}" style="color:#000">Contactez-nous</a></strong></p>
+                        </div>
+                    </div>
+                  <div class="panel">
+                        <div class="panel-heading">
+                            <h2>Mot du recteur : </h2>
+                        </div>
+                        <div class="panel-body directeur">
+                          <div class="media">
+								{% for motdirecteur in motdirecteurs %}
+									<div class="media-left">
+										{% if motdirecteur.directeur.profile == "" or motdirecteur.directeur.profile is null %}
+											<img src="img/logo-ucm.jpg">
+										{% else %}
+											<img src="{{ motdirecteur.directeur.profile }}">
+										{% endif %}
+									</div>
+									 <div class="media-body">
+									   <article>
+										 <p class="title">{{ motdirecteur.titre }} </p>
+										 <p>{{ motdirecteur.contenu }}</p>
+									   </article>
+									 </div>
+								{% endfor %}	 
+                           </div>
+
+                                       
+
+                        </div>
+                        <div class="panel-footer">
+                            <p><strong>Mot du recteur - UCM</strong></p>
+                        </div>
+                  </div>
+                </div>
+              <!-- FORMATION -->
+                <div class="col-md-4 col-sm-12 col-xs-12 ">
+                    <div class="panel">
+                        <div class="panel-heading">
+                            <h2>Les événements à venir</h2>
+                        </div>
+                        <div class="panel-body ">
+                           {% if evenements|length > 0 %}
+								{% for evenement in evenements %}
+									{% set dateEvent = evenement.date|date('Y-m-d') %}
+									{% set arrDateEvent = dateEvent|split('-')%}
+									    <div class="media">
+											<div class="media-left">
+											    <p class="day">{{ arrDateEvent[2] }}</p>
+											    <p class="month">
+													{% for j in range(1, 12) %}
+														{% if j == arrDateEvent[1] %}
+															{{ evenement.date |date('M') }}
+														{% endif %}
+													{% endfor %}	
+											    </p>
+											</div>
+											 <div class="media-body">
+											  <div class="tiret-droit">
+													[{{ evenement.libelle }}] {{ evenement.description|couperPhrase(141) }}
+											  </div>
+											 </div>
+										</div>
+								{% endfor %}
+							{% endif %}
+                        </div>
+                        <div class="panel-footer">
+                            <p><strong><a href="{{ path('ucm_front_all_event') }}" style="color:#000"> Tous les evenements</a></strong></p>
+                        </div>
+                    </div>
+                   
+                   <!-- Recherche formation -->
+
+                    <div class="panel panel-default panel_form ">
+                        <div class="panel-heading">
+                            <h2>recherche une formation</h2>
+                        </div>
+            
+                        <div class="panel-body">
+                          <p class="" style="margin:0 0 15px;">En alternance ou continue</p>
+                           <form class="form-horizontal" role="form" action="{{ path('ucm_front_all_formation') }}" type="GET">                              
+                              <div class="form-group">
+                                <div class="col-sm-12 relative">
+                                  <select name="accessible_en" class="form-control" id="" >
+                                    <option value="">Accessible en</option>
+									{% for categformation in categformations %}
+										<option value="{{ categformation.libelle}}">{{ categformation.libelle}}</option>
+									{% endfor %}                             
+                                </select>                                   
+                                </div>
+                              </div>
+                              <div class="form-group">
+                                <div class="col-sm-12 relative">
+                                  <select name="discipline" class="form-control" id="">
+									<!--<option value=""></option>-->
+                                    {% for formation in formations %}
+										<option value="{{ formation.titre}}">{{ formation.titre}}</option>
+									{% endfor %}                                     
+                                </select>                                   
+                                </div>
+                              </div>                             
+
+                              <div class="form-group"> 
+                                <div class=" col-sm-12">
+                                  <button type="submit" class="btn btn-generale hvr-push">Envoyer</button>
+                                </div>
+                              </div>
+
+                            </form>
+                          </div>
+                        <div class="panel-footer">
+                            <p><strong><a href="{{ path('ucm_front_all_formation') }}" style="color:#000">Toutes nos formations</a></strong></p>
+                        </div>
+                    </div>                    
+                </div>                
+            </div>
+          </div>
+        </div>  
+		
+		<!-- Button trigger modal -->
+		
+{% endblock %}
+
+
+{% block reseauxsociaux %}        
+      <div class="reseau wow bounceInRight ">
+        <div class="container">
+          <h2 class="pull-left">Suivez UCM</h2>
+          <div class="pull-right">
+            <a class="btn btn-block btn-social ">
+            <span class="fa fa-check" style="color: #fff"></span>Tout
+          </a>
+          <a class="btn btn-block btn-social btn-twitte ">
+            <span class="fa fa-twitter"></span>Twitter
+          </a>
+          <a class="btn btn-block btn-social btn-facebook ">
+            <span class="fa fa-facebook"></span> facebook
+          </a>
+          <a class="btn btn-block btn-social btn-instagram ">
+            <span class="fa fa fa-instagram"></span> instagram
+          </a>
+          <a class="btn btn-block btn-social btn-youtube ">
+            <span class="fa fa fa-youtube"></span>youtube
+          </a>
+          </div>
+        </div>
+      </div>
+
+{% endblock %}
+
+
+ {% block partenaire %}
+       <div class="realisation">
+	   
+          <div class="container">
+			<h2>NOS PARTENAIRES</h2><br />
+            <div id="slider">
+			  {% for partenaire in partenaires %}
+					  <div class="items"><a href="{{ partenaire.url }}" target="_blank"><img src="{{ asset('uploads/partenaire/' ~ partenaire.logo) }}"  style="width:80%;height:120px"></a></div>					  				  
+			  {% endfor %}
+          </div>
+        </div>
+    </div>
+{% endblock %}
+      

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Ucm</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+    <link rel="stylesheet" href="{{ asset('css/font-aweson.min.css') }} ">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/bootstrap-sociale.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/slick.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/animate.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/ucm.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/v2.css') }} ">
+    <link rel="stylesheet" href="{{ asset('css/evenement.css') }}" >
+    <link rel="stylesheet" href="{{ asset('css/responsive.css') }}">    
+  </head>
+
+  <body>
+
+    <!--************************************ HEADER ***********************************-->
+    <div class="container-fluid">
+
+
+      <!-- fin menu -->
+      <header>
+        <nav class="navbar navbar-fixed-top navbar-justified  ">
+          <div class="container w-100">
+              <button type="button" class="navbar-toggle mycustume-toggle">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand mon-logo" href="/"><img class="white" src="img/logo-ucm.jpg"></a> 
+              <div class="navbar-header navbar-left">
+                <div class=" pull-left" id="menu-resp"> 
+                  <ul class="nav navbar-nav navbar-left">
+                      <li><a>Université Catholique de Madagascar</a></li>
+                  </ul>
+                </div>
+              </div>
+              <div class="navbar-header navbar-right">
+                <div class=" pull-left" id="menu-resp">
+                  <ul class="nav navbar-nav navbar-right">
+                    {% for menutop in getMenuTop() %}
+                        
+                            <li class="active"><a href="{{ menutop.url }}" class="hvr-underline-from-center break-slide " target="_blank">{{ menutop.libelle }}</a></li>
+                        
+                    {% endfor %}  
+                    <!-- Menu responsive -->
+                  </ul>               
+               
+             </div> 
+          </div>
+
+          <div id="search" >
+            <button type="button" class="btn-search"><i class="fa fa-close"></i></button>
+            <div class="container">
+              <form class="navbar-form navbar-left">
+              <div class="input-group search">
+                <input type="text" class="form-control search_input" placeholder="Search">
+                <div class="input-group-btn">
+                  <button class="btn btn-default bg-none" type="submit">
+                    <i class="glyphicon glyphicon-search"></i>
+                  </button>
+                </div>
+              </div>
+            </form>
+            </div>
+          </div>
+        </nav>
+
+        
+
+        <!-- HEADER 2 STICKY -->
+
+        <div class="header" id="myHeader">
+          <nav class="navbar navbar-inverse">
+            <div class="container">
+              <div class="navbar-header">
+                <a class="navbar-brand" href="/">
+                  <img class="white" src="/{{ getLogo() }}">
+
+                  <img class="no-color" src="/{{ getLogo() }}">
+                </a>
+              </div>
+              <div>
+                <ul class="nav navbar-nav navbar-right">
+                  {% for menumiddle in getMenuMiddle() %}
+                        <li>
+                            <a href="#" class="campus"  id="bg_menu_{{  menumiddle.id }}">{{ menumiddle.libelle }}</a>
+                        </li>
+                  {% endfor %} 
+                </ul>
+              </div>
+            </div>
+          </nav>
+
+          <!-- big menu -->
+          {% for menumiddle in getMenuMiddle() %}
+          <div class="container">
+            <div class="panels" id="panel_bg_menu_{{  menumiddle.id }}">
+              <button class="close"></button>
+                <div class="container">
+                  <div class="row">
+                      <div class="col-md-4 col-sm-4 col-xs-12">
+                        <div class="thumb">
+                          <img src="{{ asset('uploads/categorie/' ~ menumiddle.image) }}">
+                        </div>
+                        <div class="col-lg-12">
+                          <form class="form" role="form">
+                            <div class="form-group">
+                              
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-block">UCM - {{ menumiddle.libelle }}</button>
+                          </form>
+                        </div>  
+                      </div>
+                      <div class="col-md-8 col-sm-12 col-xs-12">
+                          <h3>{{ menumiddle.libelle }}</h3>
+                          <hr>
+                          <div class="row">
+                            {% set menu = menumiddle.id %}
+                            {% set compteur = 0 %}
+                            {% set countMenu = getChildMenu(menu)|length %}           
+
+                            {% for child in getChildMenu(menu) %}  
+                                {% if (compteur % 5) == 0 or (compteur == 0) %} 
+                                <div class="col-md-3 col-sm-3 col-xs-6">
+                                  <ul> 
+                                {% endif %}             
+
+                                {% if child.modelePage == 'formation' %}
+                                    <li><a href="{{ path('ucm_front_show_formation',{'url':child.url,'id':child.id}) }}" style="color:#000">{{ child.libelle | capitalize  }}</a></li>  
+
+                                {% elseif child.modelePage == 'evenement' %}
+                                    <li><a href="{{ path('ucm_front_show_evenement',{'url':child.url,'id':child.id}) }}" style="color:#000">{{ child.libelle | capitalize  }}</a></li> 
+                                {% else %}
+                                    <li><a href="{{ path('ucm_front_show_rubrique',{'url':child.url,'id':child.id}) }}" style="color:#000">{{ child.libelle | capitalize  }}</a></li>
+
+                                {% endif %}
+                                {% set compteur = compteur + 1 %}
+                                {% if (compteur % 5) == 0 or (compteur == countMenu) %} 
+                                  </ul>  
+                                </div>
+                                {% endif %}                         
+                            {% endfor  %}
+                          </div>
+                          <hr>
+                          <div class="row">                             
+                          </div>
+                        </div>
+                    </div>
+                </div>    
+              </div>
+          </div>
+          <!-- fin big menu -->
+          {% endfor %}
+        </div>
+         <div class="sticki-padd"></div>
+      </header>
+      <!-- fin menu -->
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+
+      <!-- slider -->
+      <div id="myCarousel" class="carosel-intern carousel slide" data-ride="carousel">
+        <!-- Indicators -->
+         <div class="contenu-header">
+          <h1>UCM <br/> <small>L’Université Catholique de Madagascar s’organise autour des mots d’ordre « Foi et Responsabilité » traduit du mot latin « Fides et lux ».
+         </small></h1>
+        </div>
+        <!-- Indicators -->
+        <ol class="carousel-indicators">
+           {% for i in range(1, getBanniere()|length) %}
+                      <li data-target="#myCarousel" data-slide-to="{{ i }}" class="active"></li>
+            {% endfor %}          
+        </ol>
+       <!-- Wrapper for slides -->
+        <div class="carousel-inner" role="listbox">
+          {% set compteurslide = 0 %}
+          {% for banniere in getBanniere() %}
+            {% if compteurslide == 0  %} 
+              <div class="item active">
+            {% else %}
+              <div class="item">
+            {% endif %}
+             <img src="{{ asset('uploads/images/' ~ banniere.banniere) }}"  style="width:100%"> 
+           
+            </div>
+            {% set compteurslide = compteurslide + 1 %}
+          {% endfor %}     
+         
+
+        </div>
+
+        <!-- Left and right controls -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+      {% block body %}
+      {% endblock %}   
+        
+
+      </div> <!-- fin-event-absolut -->
+        
+</div><!-- /.col-xs-12 --> 
+
+
+<footer class="container-fluid text-center">
+  <section id="footer">
+    <div class="container">
+      <div class="row text-center text-xs-center text-sm-left text-md-left">
+        <div class="col-xs-12 col-sm-6 col-md-3 right-toLeft">
+          <div class="logo">
+            <a href=""><img src="/{{ getLogo() }}"></a>
+          </div>
+        </div>
+        
+        
+          <div class="full-w col-xs-6 col-sm-4 col-md-3">
+               <h5>Contact</h5>
+               <ul class="list-unstyled quick-links">
+                 <li  style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Tél:+261 20.22.340</a></li>
+                 <li  style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Email:contact@ucm.mg</a></li>
+                 <li  style="color:#fff"><a href="{{ path('ucm_front_contact') }}"><i class="fa fa-angle-double-right"></i> Remplir le formulaire</a></li>
+               </ul>
+            </div>
+            <div class="full-w col-xs-6 col-sm-4 col-md-3">
+                <h5>Adresse</h5>
+                <ul class="list-unstyled quick-links">
+                  <li style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i>Université Catholique de Madagascar</a></li>
+                  <li style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Ambatoroka </a></li>
+                  <li style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> (Antananarivo) </a></li>
+                </ul>
+            </div>
+            <div class="full-w col-xs-6 col-sm-4 col-md-3">
+                <h5>Bibliothèque</h5>
+                <ul class="list-unstyled quick-links">
+                 <li  style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Accès bibliothèque numérique</a></li>
+                 <li  style="color:#fff"><a href="javascript:void();"><i class="fa fa-angle-double-right"></i> Portail etudiant</a></li>
+                 <li  style="color:#fff"><a href="{{ path('ucm_front_galerie') }}"><i class="fa fa-angle-double-right"></i> Nos galeries photos</a></li>
+               </ul>
+            </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5">
+          <ul class="list-unstyled list-inline social text-center">
+            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-facebook"></i></a></li>
+            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-twitter"></i></a></li>
+            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-instagram"></i></a></li>
+            <li class="list-inline-item"><a href="javascript:void();"><i class="fa fa-google-plus"></i></a></li>
+            <li class="list-inline-item"><a href="javascript:void();" target="_blank"><i class="fa fa-envelope"></i></a></li>
+          </ul>
+        </div>
+        </hr>
+      </div>  
+      <div class="row">
+        
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
+          <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.ucm.com" target="_blank">UCM</a></p>
+        </div>
+        </hr>
+      </div>  
+    </div>
+  </section>
+
+  <div class="container">
+  
+    
+    <div class="nav">
+    
+  </div>
+  </div>
+</footer>
+
+<div id="stop" class="scrollTop hvr-bob">
+  <span><a href=""></a></span>
+</div>
+
+<!-- MODALE MENU -->
+
+
+
+     <script type="text/javascript" src="{{ asset('js/jquery.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/select2.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/wow.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/wow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/slick.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('js/application.js') }}"></script>
+</body>
+</html>
